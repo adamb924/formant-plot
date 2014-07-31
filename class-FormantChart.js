@@ -9,9 +9,9 @@ function FormantChart(parameters,elementId) {
 
         this.paper = Raphael(this.elementId, this.p.figWidth, this.p.figHeight );
 
-        this.drawTrapezoid();
         this.drawHorizontalLines();
         this.drawVerticalLines();
+        this.drawTrapezoid();
         for(var i=0; i<this.data.length; i++) {
             this.plotPoint( this.data[i][1], this.data[i][2], this.data[i][0] );
         }
