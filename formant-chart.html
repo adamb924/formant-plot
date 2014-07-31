@@ -1,34 +1,31 @@
 <!doctype html>
 <html>
-<head>
-<title>Formant Plot</title>
-<meta charset="utf-8"/>
-<!-- Libraries -->
-<script type="text/javascript" src="jquery-2.1.0.min.js"></script>
-<script type="text/javascript" src="jquery-ui-1.11.0.custom/jquery-ui.js"></script>
-<link rel="stylesheet" href="jquery-ui-1.11.0.custom/jquery-ui.css" />
-<link rel="stylesheet" media="screen" type="text/css" href="colorpicker/css/colorpicker.css" />
-<script type="text/javascript" src="raphael-min.js"></script>
-<script type="text/javascript" src="raphael.export.js"></script>
-<script type="text/javascript" src="colorpicker/js/colorpicker.js"></script>
-<!-- My code -->
-<link rel="stylesheet" media="screen" type="text/css" href="formant-chart.css" />
-<script type="text/javascript" src="class-FormantChart.js"></script>
-<script type="text/javascript" src="drag-and-drop.js"></script>
-<script type="text/javascript" src="gui-setup.js"></script>
-<script type="text/javascript" src="data-binding.js"></script>
-</head>
+	<head>
+		<title>Formant Plot</title>
+		<meta charset="utf-8"/>
+		<!-- Libraries -->
+		<script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+		<script type="text/javascript" src="jquery-ui-1.11.0.custom/jquery-ui.js"></script>
+		<link rel="stylesheet" href="jquery-ui-1.11.0.custom/jquery-ui.css" />
+		<link rel="stylesheet" media="screen" type="text/css" href="colorpicker/css/colorpicker.css" />
+		<script type="text/javascript" src="raphael-min.js"></script>
+		<script type="text/javascript" src="raphael.export.js"></script>
+		<script type="text/javascript" src="colorpicker/js/colorpicker.js"></script>
+		<!-- My code -->
+		<link rel="stylesheet" media="screen" type="text/css" href="formant-chart.css" />
+		<script type="text/javascript" src="class-FormantChart.js"></script>
+		<script type="text/javascript" src="gui-setup.js"></script>
+		<script type="text/javascript" src="data-binding.js"></script>
+		<script type="text/javascript" src="drag-and-drop.js"></script>
+	</head>
 <body>
-
 <div id="control-panel">
 <h1>Formant Plot</h1>
-
-
 <div id="tabs">
 <ul>
-<li><a href="#tabs-1">Grid</a></li>
-<li><a href="#tabs-2">Limits</a></li>
-<li><a href="#tabs-3">Marks</a></li>
+	<li><a href="#tabs-1">Grid</a></li>
+	<li><a href="#tabs-2">Limits</a></li>
+	<li><a href="#tabs-3">Marks</a></li>
 </ul>
 <div id="tabs-1">
     <fieldset>
@@ -119,6 +116,9 @@
             <option>Doulos SIL</option>
             <option>Times New Roman</option>
             <option>Arial</option>
+            <option>Gentium</option>
+            <option>Linux Libertine G</option>
+            <option>Linux Biolinum G</option>
         </select>
         <br/>
         <label for="fontSize">Font size</label>
@@ -176,7 +176,7 @@ you2	356.77505	1722.849763
 
 <div id="canvas-holder">
 
-<div id="canvas"/>
+<div id="canvas"></div>
 
 </div>
 
