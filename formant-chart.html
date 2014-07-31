@@ -29,21 +29,6 @@ up = function () {
     this.animate({"fill-opacity": 1}, 500);
 };
 
-// graphic parameters are in millimeters
-
-function toUnits(mm) {
-	return mm / 3.543307;
-}
-
-function toMm(units) {
-	return 3.543307 * units;
-}
-    
-function debug(variable) {
-//    document.write(variable + "<br>");   
-    alert(variable);   
-}
-
 function FormantChart(parameters,elementId) {
 	this.p = parameters;
     this.elementId = elementId;
