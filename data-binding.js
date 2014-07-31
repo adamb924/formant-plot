@@ -176,5 +176,6 @@ function setGuiElementsFromData(chart) {
     $('#dotRadius-slider').val( chart.p.dotRadius );
     $('#dotRadius-number').val( chart.p.dotRadius );
 }
-    
+setGuiElementsFromData(window.chart);
+
 });

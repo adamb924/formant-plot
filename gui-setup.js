@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-var chart = new FormantChart({
+window.chart = new FormantChart({
 	figWidth: 600,
 	figHeight: 400,
 	figMargin: 10,
@@ -19,8 +19,7 @@ var chart = new FormantChart({
 	trapezoidLineColor: "#000000",
 	trapezoidLineWidth: 2,
 	}, "canvas");
-chart.setData( $("#formant-values").val() );
-setGuiElementsFromData(chart);
+window.chart.setData( $("#formant-values").val() );
 
 $( "#tabs" ).tabs();
 	
