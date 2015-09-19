@@ -49,3 +49,7 @@ input[type="number"] {
 #generate-button {
 	float: right;
 }
+
+.custom-qtip {
+	font-size: 150%;
+}

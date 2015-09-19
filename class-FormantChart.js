@@ -13,8 +13,14 @@ function FormantChart(parameters,elementId) {
         this.drawVerticalLines();
         this.drawTrapezoid();
         for(var i=0; i<this.data.length; i++) {
-            this.plotPoint( this.data[i][1], this.data[i][2], this.data[i][0] );
+			if( this.data[i].length > 3 ) {
+				this.plotPoint( this.data[i][1], this.data[i][2], this.data[i][0], this.data[i][3] );
+			} else {
+				this.plotPoint( this.data[i][1], this.data[i][2], this.data[i][0] );
+			}
         }
+		
+		$('[title!=""]').qtip({ style: { classes: 'qtip-shadow custom-qtip' } });
     }
 	
 	this.toSvg = function() {
@@ -63,26 +69,34 @@ function FormantChart(parameters,elementId) {
         }
 	}
 
-	this.plotPoint = function(f1, f2, label) {
-        x = this.positionX(f2);
-        y = this.positionY(f1);
+	this.plotPoint = function(f1, f2, label, title) {
+		var title = typeof title !== 'undefined' ? title : '';
+        var x = this.positionX(f2);
+        var y = this.positionY(f1);
         if( this.p.markType == "labeled-dot" ) {
-            this.drawDot( x, y );
-            this.drawText( x+2*this.p.dotRadius, y-2*this.p.dotRadius, label, true );
+            var d = this.drawDot( x, y );
+            var t = this.drawText( x+2*this.p.dotRadius, y-2*this.p.dotRadius, label, true );
         } else if( this.p.markType == "label-only" ) {
-            this.drawText( x+2*this.p.dotRadius, y-2*this.p.dotRadius, label, false );
+            var t = this.drawText( x+2*this.p.dotRadius, y-2*this.p.dotRadius, label, false );
         } else if( this.p.markType == "dot-only" ) {
-            this.drawDot( x, y );
+            var d = this.drawDot( x, y );
         }
+		if( typeof t !== 'undefined' ) {
+			t.node.setAttribute("title", this.formatToolTip(f1, f2, label, title) ); 
+		}
+		if( typeof d !== 'undefined' ) {
+			d.node.setAttribute("title", this.formatToolTip(f1, f2, label, title) ); 
+		}
     }
     
     this.drawDot = function(x, y) {
         var d = this.paper.circle( x, y , this.p.dotRadius );
         d.attr("fill", this.p.dotFillColor );
         d.attr("stroke-width", 0 );
+		return d;
     }
     
-    this.drawText = function(x, y, label, startAnchor) {
+    this.drawText = function(x, y, label, startAnchor ) {
         var t = this.paper.text(x, y, label);
         if( startAnchor == true ) {
             t.attr("text-anchor","start");
@@ -91,7 +105,12 @@ function FormantChart(parameters,elementId) {
         t.attr("font-size", this.p.fontSize );
         t.node.setAttribute("class", "draggable"); 
         t.drag(move, start, up);
+		return t;
     }
+	
+	this.formatToolTip =function(x, y, label, title) {
+		return "<p>" + label + " (" + x + ", " + y + ")</p><p>" + title + "</p>";
+	}
 
 	this.positionY = function(f1) {
 		return this.plotTop() + this.plotHeight()*(f1 - this.p.f1Min)/(this.p.f1Max - this.p.f1Min);
@@ -175,7 +194,7 @@ function FormantChart(parameters,elementId) {
         var lines = plainText.trim().split(/[\n\r]/);
         for(var i=0; i<lines.length; i++) {
             var elements = lines[i].trim().split(/\s+/);
-            dataTable.push( [ elements[0] , elements[1], elements[2] ] );
+            dataTable.push( elements );
         }
         return dataTable;
     }
