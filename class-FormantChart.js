@@ -193,7 +193,7 @@ function FormantChart(parameters,elementId) {
         var dataTable = [];
         var lines = plainText.trim().split(/[\n\r]/);
         for(var i=0; i<lines.length; i++) {
-            var elements = lines[i].trim().split(/\s+/);
+            var elements = lines[i].trim().split(/\t+/);
             dataTable.push( elements );
         }
         return dataTable;
