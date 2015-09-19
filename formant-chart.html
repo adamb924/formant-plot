@@ -26,6 +26,7 @@
 <body>
 <div id="control-panel">
 <h1>Formant Plot</h1>
+<div>
 <p><em>Vowel charts without the tears, in scalable vector format (SVG).</em></p>
 <div id="tabs">
 <ul>
@@ -35,111 +36,111 @@
 	<li><a href="#tabs-3">Marks</a></li>
 </ul>
 <div id="tabs-1">
-    <fieldset>
-        <legend>Trapezoid</legend>
-        <label for="trapezoid-slider">Trapezoid Ratio</label>
-        <input type="range" id="trapezoid-slider" min="0" max="1" step="0.01" value="0.7"/>
-        <input type="number" id="trapezoid-number" min="0" max="1" step="0.01" value="0.7"/>
-        <br/>
-        <label for="trapezoidLineColor">Line Color</label>
-        <input type="text" maxlength="6" size="6" id="trapezoidLineColor" value="aaaaaa" />
-        <br/>
-        <label for="trapezoidLineWidth-slider">Line Width</label>
-        <input type="range" id="trapezoidLineWidth-slider" min="0" max="10" step="0.1" value="1"/>
-        <input type="number" id="trapezoidLineWidth-number" min="0" max="10" step="0.1" value="1"/>
-    </fieldset>
-    <fieldset>
-        <legend>Intermediate Lines</legend>
-        <label for="hlines-slider">Horizontal</label>
-        <input type="range" id="hlines-slider" min="0" max="10" step="1" value="2"/>
-        <input type="number" id="hlines-number" min="0" max="10" step="1" value="2"/>
-        <br/>
-        <label for="vlines-slider">Vertical</label>
-        <input type="range" id="vlines-slider" min="0" max="10" step="1" value="1"/>
-        <input type="number" id="vlines-number" min="0" max="10" step="1" value="1"/>
-        <br/>
-        <label for="intermediateLineColor">Line Color</label>
-        <input type="text" maxlength="6" size="6" id="intermediateLineColor" value="aaaaaa" />
-        <br/>
-        <label for="intermediateLineWidth-slider">Line Width</label>
-        <input type="range" id="intermediateLineWidth-slider" min="0" max="10" step="0.1" value="1"/>
-        <input type="number" id="intermediateLineWidth-number" min="0" max="10" step="0.1" value="1"/>
-    </fieldset>
+	<fieldset>
+		<legend>Trapezoid</legend>
+		<label for="trapezoid-slider">Trapezoid Ratio</label>
+		<input type="range" id="trapezoid-slider" min="0" max="1" step="0.01" value="0.7"/>
+		<input type="number" id="trapezoid-number" min="0" max="1" step="0.01" value="0.7"/>
+		<br/>
+		<label for="trapezoidLineColor">Line Color</label>
+		<input type="text" maxlength="6" size="6" id="trapezoidLineColor" value="aaaaaa" />
+		<br/>
+		<label for="trapezoidLineWidth-slider">Line Width</label>
+		<input type="range" id="trapezoidLineWidth-slider" min="0" max="10" step="0.1" value="1"/>
+		<input type="number" id="trapezoidLineWidth-number" min="0" max="10" step="0.1" value="1"/>
+	</fieldset>
+	<fieldset>
+		<legend>Intermediate Lines</legend>
+		<label for="hlines-slider">Horizontal</label>
+		<input type="range" id="hlines-slider" min="0" max="10" step="1" value="2"/>
+		<input type="number" id="hlines-number" min="0" max="10" step="1" value="2"/>
+		<br/>
+		<label for="vlines-slider">Vertical</label>
+		<input type="range" id="vlines-slider" min="0" max="10" step="1" value="1"/>
+		<input type="number" id="vlines-number" min="0" max="10" step="1" value="1"/>
+		<br/>
+		<label for="intermediateLineColor">Line Color</label>
+		<input type="text" maxlength="6" size="6" id="intermediateLineColor" value="aaaaaa" />
+		<br/>
+		<label for="intermediateLineWidth-slider">Line Width</label>
+		<input type="range" id="intermediateLineWidth-slider" min="0" max="10" step="0.1" value="1"/>
+		<input type="number" id="intermediateLineWidth-number" min="0" max="10" step="0.1" value="1"/>
+	</fieldset>
 
 </div>
 <div id="tabs-2">
-    <div id="accordion">
-        <h3>Width &amp; Aspect Ratio</h3>
-        <div>
-            <label for="waWidth-slider">Width</label>
-            <input type="range" id="waWidth-slider" min="1" max="2000" step="1" value="600"/>
-            <input type="number" id="waWidth-number" min="1" max="10000" step="1" value="600"/>
-            <br/>
-            <label for="waAspect-slider">Aspect Ratio</label>
-            <input type="range" id="waAspect-slider" min="0" max="1" step="0.01" value="0.62"/>
-            <input type="number" id="waAspect-number" min="0" max="1" step="0.01" value="0.62"/>
-        </div>
-        <h3>Absolute Dimensions</h3>
-        <div>
-            <label for="absWidth-slider">Width</label>
-            <input type="range" id="absWidth-slider" min="1" max="2000" step="1" value="600"/>
-            <input type="number" id="absWidth-number" min="1" max="2000" step="1" value="600"/>
-            <br/>
-            <label for="absHeight-slider">Height</label>
-            <input type="range" id="absHeight-slider" min="1" max="1000" step="1" value="400"/>
-            <input type="number" id="absHeight-number" min="1" max="1000" step="1" value="400"/>
-            <br/>
-        </div>
-    </div>
-    <fieldset>
-        <legend>Figure</legend>
-        <label for="margin-slider">Margin</label>
-        <input type="range" id="margin-slider" min="1" max="50" step="1" value="10"/>
-        <input type="number" id="margin-number" min="1" max="50" step="1" value="10"/>
-        <br/>
-        <label for="f1min">F1 Min/Max</label>
-        <input type="number" id="f1min" min="1" max="6000" step="1" value="100"/>
-        <input type="number" id="f1max" min="1" max="6000" step="1" value="100"/>
-        <br/>
-        <label for="f2min">F2 Min/Max</label>
-        <input type="number" id="f2min" min="1" max="6000" step="1" value="100"/>
-        <input type="number" id="f2max" min="1" max="6000" step="1" value="100"/>
-        <br/>
-        <button id="min-max">Recalculate Min/Max</button>
-    </fieldset>
+	<div id="accordion">
+		<h3>Width &amp; Aspect Ratio</h3>
+		<div>
+			<label for="waWidth-slider">Width</label>
+			<input type="range" id="waWidth-slider" min="1" max="2000" step="1" value="600"/>
+			<input type="number" id="waWidth-number" min="1" max="10000" step="1" value="600"/>
+			<br/>
+			<label for="waAspect-slider">Aspect Ratio</label>
+			<input type="range" id="waAspect-slider" min="0" max="1" step="0.01" value="0.62"/>
+			<input type="number" id="waAspect-number" min="0" max="1" step="0.01" value="0.62"/>
+		</div>
+		<h3>Absolute Dimensions</h3>
+		<div>
+			<label for="absWidth-slider">Width</label>
+			<input type="range" id="absWidth-slider" min="1" max="2000" step="1" value="600"/>
+			<input type="number" id="absWidth-number" min="1" max="2000" step="1" value="600"/>
+			<br/>
+			<label for="absHeight-slider">Height</label>
+			<input type="range" id="absHeight-slider" min="1" max="1000" step="1" value="400"/>
+			<input type="number" id="absHeight-number" min="1" max="1000" step="1" value="400"/>
+			<br/>
+		</div>
+	</div>
+	<fieldset>
+		<legend>Figure</legend>
+		<label for="margin-slider">Margin</label>
+		<input type="range" id="margin-slider" min="1" max="50" step="1" value="10"/>
+		<input type="number" id="margin-number" min="1" max="50" step="1" value="10"/>
+		<br/>
+		<label for="f1min">F1 Min/Max</label>
+		<input type="number" id="f1min" min="1" max="6000" step="1" value="100"/>
+		<input type="number" id="f1max" min="1" max="6000" step="1" value="100"/>
+		<br/>
+		<label for="f2min">F2 Min/Max</label>
+		<input type="number" id="f2min" min="1" max="6000" step="1" value="100"/>
+		<input type="number" id="f2max" min="1" max="6000" step="1" value="100"/>
+		<br/>
+		<button id="min-max">Recalculate Min/Max</button>
+	</fieldset>
 </div>
 <div id="tabs-3">
-    <label for="markType">Marker Type</label>
-    <select id="markType">
-        <option value="labeled-dot">Label &amp; Dot</option>
-        <option value="label-only">Label Only</option>
-        <option value="dot-only">Dot Only</option>
-    </select>
-    <fieldset>
-        <legend>Text</legend>
-        <label for="fontFamily">Font family</label>
-        <select id="fontFamily">
-            <option>Charis SIL</option>
-            <option>Doulos SIL</option>
-            <option>Times New Roman</option>
-            <option>Arial</option>
-            <option>Gentium</option>
-            <option>Linux Libertine G</option>
-            <option>Linux Biolinum G</option>
-        </select>
-        <br/>
-        <label for="fontSize">Font size</label>
-        <input type="number" id="fontSize" min="1" value="12"/>
-    </fieldset>
-    <fieldset>
-        <legend>Dot</legend>
-        <label for="dotColor">Dot Color</label>
-        <input type="text" maxlength="6" size="6" id="dotColor" value="000000" />
-        <br/>
-        <label for="dotRadius-slider">Dot Radius</label>
-        <input type="range" id="dotRadius-slider" min="0" max="10" step="0.1" value="1"/>
-        <input type="number" id="dotRadius-number" min="0" max="10" step="0.1" value="1"/>
-    </fieldset>
+	<label for="markType">Marker Type</label>
+	<select id="markType">
+		<option value="labeled-dot">Label &amp; Dot</option>
+		<option value="label-only">Label Only</option>
+		<option value="dot-only">Dot Only</option>
+	</select>
+	<fieldset>
+		<legend>Text</legend>
+		<label for="fontFamily">Font family</label>
+		<select id="fontFamily">
+			<option>Charis SIL</option>
+			<option>Doulos SIL</option>
+			<option>Times New Roman</option>
+			<option>Arial</option>
+			<option>Gentium</option>
+			<option>Linux Libertine G</option>
+			<option>Linux Biolinum G</option>
+		</select>
+		<br/>
+		<label for="fontSize">Font size</label>
+		<input type="number" id="fontSize" min="1" value="12"/>
+	</fieldset>
+	<fieldset>
+		<legend>Dot</legend>
+		<label for="dotColor">Dot Color</label>
+		<input type="text" maxlength="6" size="6" id="dotColor" value="000000" />
+		<br/>
+		<label for="dotRadius-slider">Dot Radius</label>
+		<input type="range" id="dotRadius-slider" min="0" max="10" step="0.1" value="1"/>
+		<input type="number" id="dotRadius-number" min="0" max="10" step="0.1" value="1"/>
+	</fieldset>
 </div>
 <div id="tabs-4">
 <ol>
@@ -149,7 +150,7 @@
 <li>Click the &ldquo;Download&rdquo; button below to download your file. Your browser might just try to display it, in which case you should right-click and do &ldquo;Save page as...&rdquo;</li>
 </ol>
 <p>You can drop the image directly into your word processor. If you need to change it to a raster format (like PNG or JPEG), then you can open the file in <a href="http://www.inkscape.org/" target="_blank">Inkscape</a> (free, excellent) and do File | Export Bitmap...</p>
-<p><span title="correctly styled?">test</span></p>
+<p>Click “Formant Chart” above to collapse this panel.</p>
 </div>
 </div>
 
@@ -175,6 +176,7 @@ iː	284	2117
 <button id="download-button">Download</button>
 </form>
 
+</div>
 </div>
 
 <div id="canvas-holder">

@@ -1,4 +1,8 @@
 $( document ).ready(function() {
+	
+$('#control-panel > h1').click(function() {
+	$(this).next().toggle();
+});
 
 window.chart = new FormantChart({
 	figWidth: 600,
