@@ -34,6 +34,7 @@
 	<li><a href="#tabs-1">Grid</a></li>
 	<li><a href="#tabs-2">Limits</a></li>
 	<li><a href="#tabs-3">Marks</a></li>
+	<li><a href="#tabs-5">Highlight</a></li>
 </ul>
 <div id="tabs-1">
 	<fieldset>
@@ -142,6 +143,19 @@
 		<input type="number" id="dotRadius-number" min="0" max="10" step="0.1" value="1"/>
 	</fieldset>
 </div>
+<div id="tabs-5">
+	<p>
+		<label for="highlightRE">Regular expression</label>
+		<input type="text" maxlength="20" size="20" id="highlightRE" value="" />
+	</p>
+	<p>
+		<label for="highlightColor">Highlight Color</label>
+		<input type="text" maxlength="6" size="6" id="highlightColor" value="#ff0000" />
+	</p>
+	<p>
+		<button id="update-highlight">Update</button>
+	</p>
+</div>
 <div id="tabs-4">
 <ol>
 <li>Copy/paste your data into the box below this panel. The chart will update automatically. The input must be &ldquo;label&lt;tab&gt;F1&lt;tab&gt;F2&rdquo; You can copy/paste from a spreadsheet, for instance.</li>
@@ -152,6 +166,7 @@
 </ol>
 <p>You can drop the image directly into your word processor. If you need to change it to a raster format (like PNG or JPEG), then you can open the file in <a href="http://www.inkscape.org/" target="_blank">Inkscape</a> (free, excellent) and do File | Export Bitmap...</p>
 <p>Click “Formant Chart” above to collapse this panel.</p>
+<p>Hold down “Shift” and move your cursor over the plot to see F1 and F2 coordinates.</p>
 </div>
 </div>
 
@@ -184,6 +199,7 @@ iː	284	2117
 
 <div id="canvas"></div>
 
+<p id="coordinates"></p>
 </div>
 
 </body>

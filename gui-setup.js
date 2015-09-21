@@ -25,6 +25,17 @@ window.chart = new FormantChart({
 	}, "canvas");
 window.chart.setData( $("#formant-values").val() );
 
+window.shifted = false;
+$(document).on('keyup keydown', function(e){
+	window.shifted = e.shiftKey; 
+	if( window.shifted ) {
+		$('#canvas').addClass('crosshairs');
+	} else {
+		$('#canvas').removeClass('crosshairs');
+		$('#coordinates').text("");
+	}
+} );
+
 $( "#tabs" ).tabs();
 	
 $( "#generate-button" )
@@ -66,6 +77,24 @@ $('#intermediateLineColor').ColorPicker({
         chart.draw();
 	}
 });
+
+$( "#update-highlight" )
+	.button()
+		.click(function() {
+			var re = new RegExp( $('#highlightRE').val() );
+			$("text > tspan").each(function() {
+				var text = $(this).parent();
+				var circle = $("circle[data-index="+text.data('index')+"]")
+				if( re.test( $(this).text() ) ) {
+					text.attr("fill", $('#highlightColor').val() );
+					circle.attr("fill", $('#highlightColor').val() );
+				} else {
+					text.attr("fill", '#000' );
+					circle.attr("fill", window.chart.p.dotFillColor );
+				}
+			});
+		});
+
 
 $('#trapezoidLineColor').ColorPicker({
 	color: '#aaaaaa',

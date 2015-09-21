@@ -53,3 +53,7 @@ input[type="number"] {
 .custom-qtip {
 	font-size: 150%;
 }
+
+.crosshairs {
+	cursor: crosshair;
+}

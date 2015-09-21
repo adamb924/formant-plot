@@ -1,11 +1,12 @@
 function FormantChart(parameters,elementId) {
 	this.p = parameters;
     this.elementId = elementId;
-    
+	this.canvasElement = $('#' + this.elementId );
+
 	this.draw = function() {
 		$('svg').remove();
 		
-		$('#' + this.elementId ).width( this.p.figWidth );
+		this.canvasElement.width( this.p.figWidth );
 
         this.paper = Raphael(this.elementId, this.p.figWidth, this.p.figHeight );
 
@@ -14,11 +15,24 @@ function FormantChart(parameters,elementId) {
         this.drawTrapezoid();
         for(var i=0; i<this.data.length; i++) {
 			if( this.data[i].length > 3 ) {
-				this.plotPoint( this.data[i][1], this.data[i][2], this.data[i][0], this.data[i][3] );
+				this.plotPoint( this.data[i][1], this.data[i][2], this.data[i][0], i, this.data[i][3] );
 			} else {
-				this.plotPoint( this.data[i][1], this.data[i][2], this.data[i][0] );
+				this.plotPoint( this.data[i][1], this.data[i][2], this.data[i][0], i );
 			}
         }
+
+		window.chart.canvasElement.mousemove(function (event) {
+		if( window.shifted ) {
+				var bnds = document.getElementById( window.chart.elementId ).getBoundingClientRect();
+				var fx = (event.clientX - bnds.left)/bnds.width * window.chart.canvasElement.width();
+				var fy = (event.clientY - bnds.top)/bnds.height * window.chart.canvasElement.height();	
+				$('#coordinates').text( 'F1: ' + window.chart.f1(fy) + ', F2: ' + window.chart.f2(fx) );
+			}
+        });
+
+		$('#' + this.elementId ).mouseleave(function (event) {
+			$('#coordinates').text("");
+        });
 		
 		$('[title!=""]').qtip({ style: { classes: 'qtip-shadow custom-qtip' } });
     }
@@ -69,7 +83,7 @@ function FormantChart(parameters,elementId) {
         }
 	}
 
-	this.plotPoint = function(f1, f2, label, title) {
+	this.plotPoint = function(f1, f2, label, index, title) {
 		var title = typeof title !== 'undefined' ? title : '';
         var x = this.positionX(f2);
         var y = this.positionY(f1);
@@ -83,9 +97,11 @@ function FormantChart(parameters,elementId) {
         }
 		if( typeof t !== 'undefined' ) {
 			t.node.setAttribute("title", this.formatToolTip(f1, f2, label, title) ); 
+			t.node.setAttribute("data-index", index ); 
 		}
 		if( typeof d !== 'undefined' ) {
 			d.node.setAttribute("title", this.formatToolTip(f1, f2, label, title) ); 
+			d.node.setAttribute("data-index", index ); 
 		}
     }
     
@@ -118,6 +134,14 @@ function FormantChart(parameters,elementId) {
 	
 	this.positionX = function(f2) {
 		return this.plotRight() - this.plotWidth()*(f2 - this.p.f2Min)/(this.p.f2Max - this.p.f2Min);
+	}
+
+	this.f1 = function(y) {
+		return Math.round( ( (y - this.plotTop()) / this.plotHeight() ) * (this.p.f1Max - this.p.f1Min) + this.p.f1Min );
+	}
+	
+	this.f2 = function(x) {
+		return Math.round( ( ( this.plotRight() - x ) / this.plotWidth() ) * (this.p.f2Max - this.p.f2Min) + this.p.f2Min );
 	}
     
     this.plotLeft = function() {
