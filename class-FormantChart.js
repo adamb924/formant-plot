@@ -212,14 +212,27 @@ function FormantChart(parameters,elementId) {
         this.minimax();
         this.draw();
     }
-	
+		
     parseStringTable = function(plainText) {
+        var labels = [];
         var dataTable = [];
         var lines = plainText.trim().split(/[\n\r]/);
         for(var i=0; i<lines.length; i++) {
             var elements = lines[i].trim().split(/\t+/);
             dataTable.push( elements );
+            labels.push( elements[0] );
         }
+		labels = labels.filter( onlyUnique ).sort();
+		$('#labels')
+			.find('option')
+			.remove();
+		$('#labels')
+			 .append($("<option></option>"));
+		$.each(labels, function(key, value) {   
+			 $('#labels')
+				 .append($("<option></option>")
+				 .text(value)); 
+		});
         return dataTable;
     }
     
@@ -227,4 +240,8 @@ function FormantChart(parameters,elementId) {
     toType = function(obj) {
       return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
     }
+}
+
+function onlyUnique(value, index, self) { 
+	return self.indexOf(value) === index;
 }

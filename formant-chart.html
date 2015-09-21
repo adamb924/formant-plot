@@ -144,16 +144,21 @@
 	</fieldset>
 </div>
 <div id="tabs-5">
-	<p>
-		<label for="highlightRE">Regular expression</label>
-		<input type="text" maxlength="20" size="20" id="highlightRE" value="" />
-	</p>
+	<div id="highlight-accordion">
+		<h3>Select label</h3>
+		<div>
+			<select id="labels"></select>
+		</div>
+		<h3>Regular expression</h3>
+		<div>
+			<label for="highlightRE">Regular expression</label>
+			<input type="text" maxlength="20" size="20" id="highlightRE" value="" />
+			<button id="update-highlight">Update</button>
+		</div>
+	</div>
 	<p>
 		<label for="highlightColor">Highlight Color</label>
 		<input type="text" maxlength="6" size="6" id="highlightColor" value="#ff0000" />
-	</p>
-	<p>
-		<button id="update-highlight">Update</button>
 	</p>
 </div>
 <div id="tabs-4">

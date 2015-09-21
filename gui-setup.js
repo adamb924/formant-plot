@@ -81,21 +81,46 @@ $('#intermediateLineColor').ColorPicker({
 $( "#update-highlight" )
 	.button()
 		.click(function() {
-			var re = new RegExp( $('#highlightRE').val() );
-			$("text > tspan").each(function() {
-				var text = $(this).parent();
-				var circle = $("circle[data-index="+text.data('index')+"]")
-				if( re.test( $(this).text() ) ) {
-					text.attr("fill", $('#highlightColor').val() );
-					circle.attr("fill", $('#highlightColor').val() );
-				} else {
-					text.attr("fill", '#000' );
-					circle.attr("fill", window.chart.p.dotFillColor );
-				}
-			});
+			if( $('#highlightRE').val().length > 0 ) {
+				var re = new RegExp( $('#highlightRE').val() );
+				$("text > tspan").each(function() {
+					var text = $(this).parent();
+					var circle = $("circle[data-index="+text.data('index')+"]")
+					if( re.test( $(this).text() ) ) {
+						text.attr("fill", $('#highlightColor').val() );
+						circle.attr("fill", $('#highlightColor').val() );
+					} else {
+						text.attr("fill", '#000' );
+						circle.attr("fill", window.chart.p.dotFillColor );
+					}
+				});
+			}
 		});
 
-
+$('#labels').change(function() {
+	var label = $(this).val();
+	if( label.length > 0 ) {
+		$("text > tspan").each(function() {
+			var text = $(this).parent();
+			var circle = $("circle[data-index="+text.data('index')+"]")
+			if( $(this).text() == label ) {
+				text.attr("fill", $('#highlightColor').val() );
+				circle.attr("fill", $('#highlightColor').val() );
+			} else {
+				text.attr("fill", '#000' );
+				circle.attr("fill", window.chart.p.dotFillColor );
+			}
+		});
+	} else {
+		$("text > tspan").each(function() {
+			var text = $(this).parent();
+			var circle = $("circle[data-index="+text.data('index')+"]")
+			text.attr("fill", '#000' );
+			circle.attr("fill", window.chart.p.dotFillColor );
+		});		
+	}
+});		
+		
 $('#trapezoidLineColor').ColorPicker({
 	color: '#aaaaaa',
 	onShow: function (colpkr) {
@@ -129,6 +154,7 @@ $('#dotColor').ColorPicker({
 });
 
 $( "#accordion" ).accordion({ autoHeight: false });
+$( "#highlight-accordion" ).accordion({ autoHeight: false });
 
 // end of onReady
 });
