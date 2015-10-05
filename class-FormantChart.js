@@ -217,10 +217,13 @@ function FormantChart(parameters,elementId) {
         var labels = [];
         var dataTable = [];
         var lines = plainText.trim().split(/[\n\r]/);
+		var commentPrefix = $("#ignore-lines").val();
         for(var i=0; i<lines.length; i++) {
-            var elements = lines[i].trim().split(/\t+/);
-            dataTable.push( elements );
-            labels.push( elements[0] );
+			if( commentPrefix.length == 0 || commentPrefix != lines[i].substr(0, commentPrefix.length) ) {
+				var elements = lines[i].trim().split(/\t+/);
+				dataTable.push( elements );
+				labels.push( elements[0] );
+			}
         }
 		labels = labels.filter( onlyUnique ).sort();
 		$('#labels')
