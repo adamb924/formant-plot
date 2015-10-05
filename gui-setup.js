@@ -34,6 +34,9 @@ $(document).on('keyup keydown', function(e){
 		$('#canvas').removeClass('crosshairs');
 		$('#coordinates').text("");
 	}
+	if( e.keyCode == 80 ) { 
+		praatInput();
+	}
 } );
 
 $( "#tabs" ).tabs();
@@ -155,6 +158,19 @@ $('#dotColor').ColorPicker({
 
 $( "#accordion" ).accordion({ autoHeight: false });
 $( "#highlight-accordion" ).accordion({ autoHeight: false });
+
+function praatInput() {
+	var input = prompt("Copy line from the Praat's “Formant listing” command.","");
+	if( input.length > 0 ) {
+		var regexp = /^[0-9]+\.[0-9]+\s+([0-9]+\.[0-9]+)\s+([0-9]+\.[0-9]+)/;
+		var match = regexp.exec(input);
+		if( match != null && match.length == 3 ) {
+			$("text[data-index='-999']").remove();
+			$("circle[data-index='-999']").remove();
+			window.chart.plotPoint(match[1], match[2], "Praat", "-999", "Praat" );
+		}
+	}
+}
 
 // end of onReady
 });
