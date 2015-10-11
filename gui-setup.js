@@ -88,7 +88,7 @@ $( "#update-highlight" )
 				var re = new RegExp( $('#highlightRE').val() );
 				$("text > tspan").each(function() {
 					var text = $(this).parent();
-					var circle = $("circle[data-index="+text.data('index')+"]")
+					var circle = $("circle[data-index="+text.data('index')+"]");
 					if( re.test( $(this).text() ) ) {
 						text.attr("fill", $('#highlightColor').val() );
 						circle.attr("fill", $('#highlightColor').val() );
@@ -105,7 +105,7 @@ $('#labels').change(function() {
 	if( label.length > 0 ) {
 		$("text > tspan").each(function() {
 			var text = $(this).parent();
-			var circle = $("circle[data-index="+text.data('index')+"]")
+			var circle = $("circle[data-index="+text.data('index')+"]");
 			if( $(this).text() == label ) {
 				text.attr("fill", $('#highlightColor').val() );
 				circle.attr("fill", $('#highlightColor').val() );
@@ -117,7 +117,7 @@ $('#labels').change(function() {
 	} else {
 		$("text > tspan").each(function() {
 			var text = $(this).parent();
-			var circle = $("circle[data-index="+text.data('index')+"]")
+			var circle = $("circle[data-index="+text.data('index')+"]");
 			text.attr("fill", '#000' );
 			circle.attr("fill", window.chart.p.dotFillColor );
 		});		
@@ -164,7 +164,7 @@ function praatInput() {
 	if( input.length > 0 ) {
 		var regexp = /^[0-9]+\.[0-9]+\s+([0-9]+\.[0-9]+)\s+([0-9]+\.[0-9]+)/;
 		var match = regexp.exec(input);
-		if( match != null && match.length == 3 ) {
+		if( match !== null && match.length === 3 ) {
 			$("text[data-index='-999']").remove();
 			$("circle[data-index='-999']").remove();
 			window.chart.plotPoint(match[1], match[2], "Praat", "-999", "Praat" );

@@ -35,7 +35,7 @@ function FormantChart(parameters,elementId) {
         });
 		
 		$('[title!=""]').qtip({ style: { classes: 'qtip-shadow custom-qtip' } });
-    }
+    };
 	
 	this.toSvg = function() {
 		var svgCode = this.paper.toSVG();
@@ -45,7 +45,7 @@ function FormantChart(parameters,elementId) {
 		blob = new Blob([svgCode], {"type": "image/svg+xml"});
 		a.href = (window.URL || webkitURL).createObjectURL(blob);
 		a.click();
-	}
+	};
 
 	this.drawTrapezoid = function() {
         var command = "M" + this.plotLeft() + "," + this.plotTop() +
@@ -56,7 +56,7 @@ function FormantChart(parameters,elementId) {
         var p = this.paper.path(command);
         p.attr("stroke-width" , this.p.trapezoidLineWidth );
         p.attr("stroke", this.p.trapezoidLineColor );
-	}
+	};
 
 	this.drawHorizontalLines = function() {
         var intervalSize = this.plotHeight() / (1 + this.p.horizontalLines);
@@ -70,7 +70,7 @@ function FormantChart(parameters,elementId) {
             p.attr("stroke-width", this.p.gridLineWidth );
             p.attr("stroke", this.p.gridLineColor );
         }
-	}
+	};
 
 	this.drawVerticalLines = function() {
         var intervalSize = this.plotWidth() / (1 + this.p.verticalLines);
@@ -81,19 +81,19 @@ function FormantChart(parameters,elementId) {
             p.attr("stroke-width", this.p.gridLineWidth );
             p.attr("stroke", this.p.gridLineColor );
         }
-	}
+	};
 
 	this.plotPoint = function(f1, f2, label, index, title) {
-		var title = typeof title !== 'undefined' ? title : '';
+		title = typeof title !== 'undefined' ? title : '';
         var x = this.positionX(f2);
         var y = this.positionY(f1);
         if( this.p.markType == "labeled-dot" ) {
-            var d = this.drawDot( x, y );
-            var t = this.drawText( x+2*this.p.dotRadius, y-2*this.p.dotRadius, label, true );
+            d = this.drawDot( x, y );
+            t = this.drawText( x+2*this.p.dotRadius, y-2*this.p.dotRadius, label, true );
         } else if( this.p.markType == "label-only" ) {
-            var t = this.drawText( x+2*this.p.dotRadius, y-2*this.p.dotRadius, label, false );
+            t = this.drawText( x+2*this.p.dotRadius, y-2*this.p.dotRadius, label, false );
         } else if( this.p.markType == "dot-only" ) {
-            var d = this.drawDot( x, y );
+            d = this.drawDot( x, y );
         }
 		if( typeof t !== 'undefined' ) {
 			t.node.setAttribute("title", this.formatToolTip(f1, f2, label, title) ); 
@@ -103,18 +103,18 @@ function FormantChart(parameters,elementId) {
 			d.node.setAttribute("title", this.formatToolTip(f1, f2, label, title) ); 
 			d.node.setAttribute("data-index", index ); 
 		}
-    }
+    };
     
     this.drawDot = function(x, y) {
         var d = this.paper.circle( x, y , this.p.dotRadius );
         d.attr("fill", this.p.dotFillColor );
         d.attr("stroke-width", 0 );
 		return d;
-    }
+    };
     
     this.drawText = function(x, y, label, startAnchor ) {
         var t = this.paper.text(x, y, label);
-        if( startAnchor == true ) {
+        if( startAnchor === true ) {
             t.attr("text-anchor","start");
         }
         t.attr("font-family", this.p.fontFamily );
@@ -122,58 +122,58 @@ function FormantChart(parameters,elementId) {
         t.node.setAttribute("class", "draggable"); 
         t.drag(move, start, up);
 		return t;
-    }
+    };
 	
-	this.formatToolTip =function(x, y, label, title) {
+	this.formatToolTip = function(x, y, label, title) {
 		return "<p>" + label + " (" + x + ", " + y + ")</p><p>" + title + "</p>";
-	}
+	};
 
 	this.positionY = function(f1) {
 		return this.plotTop() + this.plotHeight()*(f1 - this.p.f1Min)/(this.p.f1Max - this.p.f1Min);
-	}
+	};
 	
 	this.positionX = function(f2) {
 		return this.plotRight() - this.plotWidth()*(f2 - this.p.f2Min)/(this.p.f2Max - this.p.f2Min);
-	}
+	};
 
 	this.f1 = function(y) {
 		return Math.round( ( (y - this.plotTop()) / this.plotHeight() ) * (this.p.f1Max - this.p.f1Min) + this.p.f1Min );
-	}
+	};
 	
 	this.f2 = function(x) {
 		return Math.round( ( ( this.plotRight() - x ) / this.plotWidth() ) * (this.p.f2Max - this.p.f2Min) + this.p.f2Min );
-	}
+	};
     
     this.plotLeft = function() {
         return this.p.figMargin;
-    }
+    };
     
     this.plotRight = function() {
         return this.p.figWidth - this.p.figMargin;
-    }
+    };
     
     this.plotTop = function() {
         return this.p.figMargin;
-    }
+    };
     
     this.plotWidth = function() {
         return this.p.figWidth - 2 * this.p.figMargin;
-    }
+    };
     
     this.plotHeight = function() {
         return this.p.figHeight - 2 * this.p.figMargin;
-    }
+    };
     
     this.plotBottom = function() {
         return this.p.figHeight - this.p.figMargin;
-    }
+    };
     
 	this.removeFormantLimits = function() {
             delete this.p.f1Max;
             delete this.p.f2Max;
             delete this.p.f1Min;
             delete this.p.f2Min;
-	}
+	};
     
     this.minimax = function() {
         if( !( this.p.hasOwnProperty("f1Max") && this.p.hasOwnProperty("f2Max") && this.p.hasOwnProperty("f1Min") && this.p.hasOwnProperty("f2Min") ) ) {
@@ -201,7 +201,7 @@ function FormantChart(parameters,elementId) {
             this.p.f1Min = Math.round( minF1 - multiplier*F1range );
             this.p.f2Min = Math.round( minF2 - multiplier*F2range );
         }
-    }
+    };
     
     this.setData = function(data) {
         if( toType(data) == "string" ) {
@@ -211,7 +211,7 @@ function FormantChart(parameters,elementId) {
         }
         this.minimax();
         this.draw();
-    }
+    };
 		
     parseStringTable = function(plainText) {
         var labels = [];
@@ -219,7 +219,7 @@ function FormantChart(parameters,elementId) {
         var lines = plainText.trim().split(/[\n\r]/);
 		var commentPrefix = $("#ignore-lines").val();
         for(var i=0; i<lines.length; i++) {
-			if( commentPrefix.length == 0 || commentPrefix != lines[i].substr(0, commentPrefix.length) ) {
+			if( commentPrefix.length === 0 || commentPrefix != lines[i].substr(0, commentPrefix.length) ) {
 				var elements = lines[i].trim().split(/\t+/);
 				dataTable.push( elements );
 				labels.push( elements[0] );
@@ -237,12 +237,12 @@ function FormantChart(parameters,elementId) {
 				 .text(value)); 
 		});
         return dataTable;
-    }
+    };
     
     /// utility functions
     toType = function(obj) {
-      return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
-    }
+      return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+    };
 }
 
 function onlyUnique(value, index, self) { 
