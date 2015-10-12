@@ -48,12 +48,24 @@ $( "#generate-button" )
             return false;
 		});
 
+// http://stackoverflow.com/a/18197341/1447002
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
 $( "#download-button" )
 	.button()
 		.click(function() {
-			var svgCode = chart.paper.toSVG();
-			blob = new Blob([svgCode], {"type": "image/svg+xml"});
-			$("#download-form").attr("action", (window.URL || webkitURL).createObjectURL(blob) );
+			download( 'chart.svg', chart.paper.toSVG() );
 		});
 
 $( "#min-max" )
